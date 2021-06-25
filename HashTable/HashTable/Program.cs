@@ -10,15 +10,17 @@ namespace HashTable
 
             string paragraph = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
             string[] para = paragraph.Split(" ");
-            MyMapNode<int, string> hash = new MyMapNode<int, string>(para.Length);
-            int key = 0;
+            MyMapNode<string, string> hash = new MyMapNode<string, string>(para.Length);
+            int keys = 0;
             foreach (string word in para)
             {
-                hash.Add(key, word);
-                key++;
+                int k = keys++;
+                string key = k.ToString();
+                hash.Add(word, key);
             }
-            Frequency frequency = new Frequency();
-            frequency.Freqncy(hash);
+            string value = hash.Get("Paranoids");
+            hash.GetArrayPosition(value);
+            hash.Remove("avoidable");
         }
     }
 }
